@@ -1,16 +1,6 @@
-<template>
-  <div class="container">
-    <Header title="Task Tracker" />
-    <Tasks
-      :tasks="tasks"
-      :onDelete="onDelete"
-      :toggleReminder="toggleReminder"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from "vue";
+import AddTask from "./components/AddTask.vue";
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
 import type { TaskProps } from "./types/TaskProps";
@@ -47,6 +37,17 @@ const toggleReminder = (id: number) => {
   );
 };
 </script>
+<template>
+  <div class="container">
+    <Header title="Task Tracker" />
+    <AddTask />
+    <Tasks
+      :tasks="tasks"
+      :onDelete="onDelete"
+      :toggleReminder="toggleReminder"
+    />
+  </div>
+</template>
 
 <style scoped>
 .container {
