@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Button from "./Button.vue";
-defineProps<{ title?: string }>();
+defineProps<{
+  title: string;
+}>();
 </script>
 
 <template>
@@ -14,7 +16,10 @@ defineProps<{ title?: string }>();
 header {
   display: flex;
   align-items: center;
-  padding: 16px;
   justify-content: space-between;
+  margin-bottom: 2rem;
+}
+h1 {
+  font-weight: 500;
 }
 </style>
