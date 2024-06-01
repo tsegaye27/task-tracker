@@ -4,26 +4,7 @@ import AddTask from "./components/AddTask.vue";
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
 import type { TaskProps } from "./types/TaskProps";
-const tasks = ref<TaskProps[]>([
-  {
-    id: 1,
-    text: "Doctor's Appointment",
-    day: "May 5th at 2:30pm",
-    reminder: true,
-  },
-  {
-    id: 2,
-    text: "Meeting at School",
-    day: "May 6th at 1:30pm",
-    reminder: true,
-  },
-  {
-    id: 3,
-    text: "Food Shopping",
-    day: "May 7th at 12:30pm",
-    reminder: false,
-  },
-]);
+const tasks = ref<TaskProps[]>([]);
 
 const onDelete = (id: number) => {
   if (confirm("Are you sure?")) {
@@ -36,11 +17,15 @@ const toggleReminder = (id: number) => {
     task.id === id ? { ...task, reminder: !task.reminder } : task
   );
 };
+
+const handleTaskAddition = (newTask: TaskProps) => {
+  tasks.value.push(newTask);
+};
 </script>
 <template>
   <div class="container">
     <Header title="Task Tracker" />
-    <AddTask />
+    <AddTask @taskAdded="handleTaskAddition" />
     <Tasks
       :tasks="tasks"
       :onDelete="onDelete"

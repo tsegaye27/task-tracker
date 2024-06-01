@@ -4,7 +4,7 @@ import { useToast } from "vue-toastification";
 import { format } from "date-fns";
 
 const toast = useToast();
-
+const emit = defineEmits(["taskAdded"]);
 const text = ref("");
 const day = ref(null);
 const reminder = ref(false);
@@ -21,7 +21,9 @@ const onSubmit = () => {
       day: formattedDay,
       reminder: reminder.value,
     };
-    console.log(newTask);
+    toast.success("Task added successfully");
+
+    emit("taskAdded", newTask);
 
     text.value = "";
     day.value = null;
