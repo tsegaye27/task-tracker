@@ -22,7 +22,6 @@ const onSubmit = () => {
       reminder: reminder.value,
     };
     toast.success("Task added successfully");
-
     emit("taskAdded", newTask);
 
     text.value = "";
