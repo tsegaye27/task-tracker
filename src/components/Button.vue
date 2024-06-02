@@ -1,14 +1,9 @@
 <script setup lang="ts">
 defineProps<{
   text: string;
+  setShowAddTask: () => void;
   color?: string;
 }>();
-
-const emit = defineEmits(["btn-click"]);
-const handleClick = () => {
-  emit("btn-click");
-  console.log("emitting");
-};
 </script>
 
 <template>
@@ -16,8 +11,8 @@ const handleClick = () => {
     :style="{
       background: color,
     }"
-    v-on:click="handleClick"
     class="btn"
+    v-on:click="setShowAddTask()"
   >
     {{ text }}
   </button>
