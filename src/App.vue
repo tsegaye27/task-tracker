@@ -8,17 +8,10 @@ import { useToast } from "vue-toastification";
 
 const tasks = ref<TaskProps[]>([]);
 const toast = useToast();
+const showAddTask = ref(false);
 
 const saveToLocalStorage = () => {
   localStorage.setItem("task", JSON.stringify(tasks.value));
-};
-
-const onDelete = (id: number) => {
-  if (confirm("Are you sure?")) {
-    tasks.value = tasks.value.filter((task) => task.id !== id);
-    saveToLocalStorage();
-    toast.success("Task deleted successfully!");
-  }
 };
 
 onMounted(() => {
@@ -27,6 +20,14 @@ onMounted(() => {
     tasks.value = JSON.parse(loadFromLocalStorage);
   }
 });
+
+const onDelete = (id: number) => {
+  if (confirm("Are you sure?")) {
+    tasks.value = tasks.value.filter((task) => task.id !== id);
+    saveToLocalStorage();
+    toast.success("Task deleted successfully!");
+  }
+};
 
 const toggleReminder = (id: number) => {
   tasks.value = tasks.value.map((task) =>
@@ -39,18 +40,18 @@ const handleTaskAddition = (newTask: TaskProps) => {
   saveToLocalStorage();
 };
 
-let showAddTask = false;
-
-const handleToggle = () => {
-  showAddTask = !showAddTask;
+const setShowAddTask = () => {
+  showAddTask.value = !showAddTask.value;
 };
 </script>
 <template>
   <div class="container">
-    <Header @btn-click="handleToggle" title="Task Tracker" />
-    <div v-if="showAddTask">
-      <AddTask @taskAdded="handleTaskAddition" />
-    </div>
+    <Header
+      :showAddTask="showAddTask"
+      :setShowAddTask="setShowAddTask"
+      title="Task Tracker"
+    />
+    <AddTask v-show="showAddTask" @taskAdded="handleTaskAddition" />
     <Tasks
       :tasks="tasks"
       :onDelete="onDelete"
