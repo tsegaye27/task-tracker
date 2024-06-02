@@ -62,9 +62,12 @@ const setShowAddTask = () => {
 
 <style scoped>
 .container {
-  padding: 0.7rem 1.5rem;
+  padding: 0.7rem 0.75rem;
   border: 2px solid #7474db;
   border-radius: 0.65rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   margin: 2rem 1rem;
   width: 30rem;
 }
