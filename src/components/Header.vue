@@ -3,12 +3,13 @@ import Button from "./Button.vue";
 defineProps<{
   title: string;
 }>();
+const emit = defineEmits(["btn-click"]);
 </script>
 
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button text="Add Task" />
+    <Button @btn-click="emit('btn-click')" text="Add Task" />
   </header>
 </template>
 

@@ -3,6 +3,12 @@ defineProps<{
   text: string;
   color?: string;
 }>();
+
+const emit = defineEmits(["btn-click"]);
+const handleClick = () => {
+  emit("btn-click");
+  console.log("emitting");
+};
 </script>
 
 <template>
@@ -10,6 +16,7 @@ defineProps<{
     :style="{
       background: color,
     }"
+    v-on:click="handleClick"
     class="btn"
   >
     {{ text }}
