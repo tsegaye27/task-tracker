@@ -1,5 +1,5 @@
-<script setup>
-import { ref, defineEmits } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import { useToast } from "vue-toastification";
 import { format } from "date-fns";
 
@@ -62,6 +62,7 @@ const onSubmit = () => {
 
 <style scoped>
 .add-form {
+  width: 28rem;
   margin: 20px 0;
   padding: 20px;
   border: 1px solid #ccc;
